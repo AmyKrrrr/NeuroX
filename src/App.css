@@ -1,38 +1,100 @@
-.App {
-  text-align: center;
+/* --- GLOBAL STYLES --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Lexend", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #050505;
+  color: white;
+  overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app-container {
+  position: relative;
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Fixed Background */
+.fixed-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+/* Scroll Content Wrapper */
+.scroll-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+/* Generic Section Wrapper */
+.section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0 5%;
 }
 
-.App-link {
-  color: #61dafb;
+/* --- FIXED NAVBAR --- */
+.floating-nav {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  gap: 2rem;
+  padding: 12px 30px;
+  background: rgba(0, 0, 0, 0.6); /* Made darker for better glow contrast */
+  backdrop-filter: blur(15px);
+  border: 1px dotted rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  pointer-events: auto;
+  transition: all 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-item {
+  color: rgba(255, 255, 255, 0.5); /* Dimmer idle state */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px; /* Slightly larger to fit the glow better */
+  height: 45px;
+  border-radius: 50%;
+  /* CRITICAL: Add transparent border here so layout doesn't jump when active */
+  border: 1px solid transparent;
+}
+
+.nav-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* --- ACTIVE STATE (GLOW) --- */
+/* We use !important to force the style in case of conflicts */
+.nav-item.active {
+  color: #e0aaff !important; /* Bright Purple Text */
+  background: rgba(224, 170, 255, 0.15) !important; /* Purple Background */
+  border: 1px solid rgba(224, 170, 255, 0.5) !important;
+
+  /* Double Layer Glow + Text Shadow */
+  box-shadow: 0 0 20px rgba(224, 170, 255, 0.6),
+    inset 0 0 10px rgba(224, 170, 255, 0.3);
+  text-shadow: 0 0 8px rgba(224, 170, 255, 0.8);
+
+  transform: scale(1.1);
 }

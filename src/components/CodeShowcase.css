@@ -1,0 +1,185 @@
+/* --- CODE SHOWCASE SECTION STYLES --- */
+
+.code-section {
+  background: transparent;
+  overflow: hidden;
+}
+
+/* Wrapper */
+.showcase-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1300px;
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* --- FLOAT ANIMATION DEFINITION --- */
+@keyframes softFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* LAYER 1: KEYBOARD */
+.keyboard-layer {
+  position: absolute;
+  left: -50px;
+  bottom: 50px;
+  z-index: 1; /* Sits behind */
+  filter: brightness(0.9);
+
+  /* Apply Float Animation: 6s duration, delayed by 0s */
+  animation: softFloat 6s ease-in-out infinite;
+}
+
+.keyboard-img {
+  width: 1000px;
+  max-width: none;
+  mask-image: linear-gradient(to right, black 20%, transparent 90%);
+  -webkit-mask-image: linear-gradient(to right, black 20%, transparent 90%);
+}
+
+/* LAYER 2: CODE WINDOW */
+.code-layer {
+  position: absolute;
+  right: 50px;
+  top: 80px;
+  z-index: 10; /* Sits in front */
+
+  /* Apply Float Animation: Slower (7s) and delayed (1s) for natural feel */
+  animation: softFloat 7s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.code-window {
+  width: 600px;
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(20px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: -30px 30px 60px rgba(0, 0, 0, 0.8);
+  font-family: "Courier New", monospace;
+  font-size: 13.5px;
+}
+
+/* Window Header */
+.code-header {
+  background: rgba(20, 20, 20, 0.95);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.window-dots {
+  display: flex;
+  gap: 8px;
+}
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.red {
+  background: #ff5f56;
+}
+.yellow {
+  background: #ffbd2e;
+}
+.green {
+  background: #27c93f;
+}
+.window-title {
+  color: #888;
+  font-size: 0.85rem;
+  font-family: sans-serif;
+  font-weight: 500;
+}
+.copy-icon {
+  color: #555;
+  cursor: pointer;
+}
+
+/* Content & Syntax Highlighting */
+.code-content {
+  padding: 20px 25px;
+  color: #d4d4d4;
+  line-height: 1.6;
+}
+.indent {
+  padding-left: 20px;
+}
+
+.keyword {
+  color: #c586c0;
+}
+.string {
+  color: #ce9178;
+}
+.type {
+  color: #4ec9b0;
+}
+.number {
+  color: #b5cea8;
+}
+.function {
+  color: #dcdcaa;
+}
+.variable {
+  color: #9cdcfe;
+}
+.property {
+  color: #9cdcfe;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .showcase-wrapper {
+    flex-direction: column-reverse;
+    height: auto;
+    padding: 80px 0;
+  }
+
+  .keyboard-layer {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: -60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    animation: none; /* Disable float on mobile to prevent layout jumping */
+  }
+
+  .keyboard-img {
+    width: 100%;
+    max-width: 700px;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .code-layer {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 90%;
+    z-index: 2;
+    animation: none; /* Disable float on mobile */
+  }
+  .code-window {
+    width: 100%;
+  }
+}

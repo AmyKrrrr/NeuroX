@@ -1,0 +1,226 @@
+/* --- CHATBOT CONTAINER --- */
+.chatbot-window {
+  width: 480px;
+  /* Height increased to fit the research summary */
+  height: 420px;
+  background: rgba(15, 15, 15, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Floating animation */
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* --- HEADER --- */
+.chatbot-header {
+  height: 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.bot-icon {
+  color: #e0aaff;
+}
+
+/* Window Control Dots */
+.window-dots {
+  display: flex;
+  gap: 6px;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.red {
+  background: #ff5f56;
+}
+.yellow {
+  background: #ffbd2e;
+}
+
+/* --- CHAT MESSAGES AREA --- */
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto; /* Scroll if text gets too long */
+}
+
+/* Scrollbar styling for chat */
+.chat-messages::-webkit-scrollbar {
+  width: 4px;
+}
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* General Message Bubble */
+.message {
+  display: flex;
+  gap: 10px;
+  max-width: 95%;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  animation: fadeIn 0.3s ease;
+}
+
+.message-text {
+  /* CRITICAL: Preserves line breaks for research paper format */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* User Message specific */
+.user-message {
+  align-self: flex-end;
+  text-align: right;
+  flex-direction: row-reverse;
+  color: #e0e0e0;
+}
+
+/* AI Message specific */
+.ai-message {
+  align-self: flex-start;
+  color: #e0aaff;
+  width: 100%;
+}
+
+.msg-icon {
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* --- RESEARCH PAPER OUTPUT STYLE --- */
+.research-output {
+  font-family: "Courier New", monospace;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  display: block;
+  background: rgba(224, 170, 255, 0.05); /* Slight background */
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 2px solid #e0aaff; /* Accent border */
+  color: #dcdcaa; /* Code-like text color */
+}
+
+/* Processing State */
+.processing {
+  color: #888;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+.spin {
+  animation: spin 2s linear infinite;
+}
+
+/* --- INPUT AREA --- */
+.chat-input-area {
+  height: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.fake-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #ccc;
+  font-size: 0.85rem;
+  font-family: monospace;
+}
+
+.send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.send-btn.active {
+  background: #e0aaff;
+  color: #240046;
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+  color: #e0aaff;
+  margin-left: 2px;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .chatbot-window {
+    width: 100%;
+    max-width: 400px;
+    height: 380px;
+    margin-top: 2rem;
+  }
+}
