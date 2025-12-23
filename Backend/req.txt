@@ -1,7 +1,0 @@
-langgraph
-langchain
-python-dotenv
-newspaper3k
-requests
-transformers
-torch
